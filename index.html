@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Snake</title>
+    <style>
+        body {
+            background-image: url('Images/Snake\ Wallpaper.jpg');
+            background-attachment: fixed;
+            background-size: cover;
+            margin: 0;
+            padding: 0;
+        }
+        /*this creates a blurred overlay on top of the background image*/
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.75);
+            /* This blurs the background for better focus on the game */
+            filter: blur(8px);
+            z-index: -1;
+            /*this allows clicks to pass through it*/
+            pointer-events: none;
+        }
+        h2 {
+            text-align: center;
+            color: white;
+        }
+        canvas {
+            background: rgb(10, 1, 1);
+            display: block;
+            margin: auto;
+            border: 2px solid whitesmoke;
+        }
+
+        button {
+            display: block;
+            margin: 20px auto;
+            padding: 10px 30px;
+            background-color: #4CAF50;
+            color: white;
+            cursor: pointer;
+            border-radius: 60px;
+            font-size: 15px;
+        }
+        button :hover {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <h2>Snake Game</h2>
+    <canvas id="game" width="500" height="500"></canvas>
+    <button id="restartBtn">Restart</button>
+    <script src="snake.js"></script>
+</body>
+</html>
