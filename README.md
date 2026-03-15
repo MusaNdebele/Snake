@@ -1,7 +1,7 @@
 #  Snake Game
 
 A simple browser-based Snake game built with **HTML, CSS, and JavaScript**.  
-This project was created to practice **system design, programming fundamentals, and game logic** as part of my software engineering journey.
+This project was created to practice **system design, programming fundamentals, and game logic** as the beginning of my software engineering journey.
 
 ---
 
