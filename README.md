@@ -8,8 +8,7 @@ This project was created to practice **system design, programming fundamentals, 
 ##  How to Play
 - Use the **arrow keys** (↑ ↓ ← →) to move the snake.
 - Eat the **food blocks** to grow longer.
-- Avoid hitting the **walls** or yourself — that ends the game (Although hitting yourself part doesn't work yet)
-- I am planning on adding the score feature later and make my restart button function.
+- Avoid hitting the **walls** or yourself — that ends the game. (Although the hitting yourself part doesn't work yet)
 
 ---
 
