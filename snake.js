@@ -12,7 +12,7 @@ let snake = [{
     y:200
 }];
 
-let direction = "RIGHT";
+let direction = "UP";
 
 //this basically places food randomly, using the Math.random()
 let food = {
@@ -20,6 +20,10 @@ let food = {
     y: Math.floor(Math.random()* 20) * box
 };
 
+let gameInterval = setInterval(draw, 150);
+
+//im adding the score variable to display the score on the canvas
+let score = 0;
 
 document.addEventListener("keydown", changeDirection);
 
@@ -51,6 +55,11 @@ function draw() {
     //this is colouring the food
     ctx.fillStyle = "white";
     ctx.fillRect(food.x, food.y, box, box);
+
+    //this is to display the score on the canvas
+    ctx.fillStyle = "Orange";
+    ctx.fillText("Food:" + score, 20, 20)
+    ctx.font = "20px Broadway";
     
     //this gets the snake's head position
     let snakeX = snake[0].x;
@@ -65,6 +74,9 @@ function draw() {
     //this part of code checks if snake ate the food (If snake head is at the same position as the food)
     //the snake ate the food
     if (snakeX === food.x && snakeY === food.y) {
+        //this increases the score when the snake eats the food
+        score++;
+
         food = {
             //the math.floor() rounds down decimals to a Whole number
             x : Math.floor(Math.random() * 20) * box,
@@ -83,33 +95,44 @@ function draw() {
     //this checks if the snake hits the wall, if it does - it's alerts game over then reloads the screen
     if (snakeX < 0 || snakeX >= 500 || snakeY <0 | snakeY >= 500){
         ctx.fillStyle = "white";
-        ctx.font = "40px Algerian";
+        ctx.font = "45px Algerian";
         //if all conditions are met, it will write game over on the canvas
         ctx.fillText("GAME OVER!", 200, 200)
-        clearInterval(draw);
+        //this stops the game loop
+        clearInterval(gameInterval);  
         return;
    }
 
     snake.unshift(newHead);
 }
 
-setInterval(draw, 150);
+/*I'm trying to change speed of the game
+let gameSpeed = 150;
+function gameSpeed(newSpeed) {
+    clearInterval(gameInterval);
 
+    gameSpeed = newSpeed;
+    gameInterval = setInterval(draw, gameSpeed);
+
+}
+*/
 //this is the function to restart the game
-let gameInterval;
+
 function restartGame() {
-    let snake = [{
-        x: 200,
-        y: 200
+    clearInterval(gameInterval);
+
+    snake = [{
+    x:200,
+    y:200
     }];
 
-    let direction = "RIGHT";
+    direction = "UP";
 
-    let food = {
-        x: Math.floor(Math.random() * 20) * box,
-        y: Math.floor(Math.random() * 20) * box
-    }
-    
+    food = {
+    x: Math.floor(Math.random() * 20) * box,
+    y: Math.floor(Math.random()* 20) * box
+    };
+
     gameInterval = setInterval(draw, 150);
 }
 
