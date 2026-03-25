@@ -52,39 +52,37 @@
             background-color: rgb(3, 73, 3);
         }
 
-        #speedbar {
-            position: absolute;
-            margin: 10px;
-            right: 20px;
-            top: 50px;     
+        #btnContainer {
+            position: fixed;    
+            top: 20px;           
+            right: 30px;         
+            border: 2px solid #333;
+            padding: 10px;
             display: flex;
-            flex-direction: column;
-            gap: 10px;
-            border: whitesmoke;
+            flex-direction: column; 
+            gap: 10px;              
+            background: rgba(255, 255, 255, 0.2); 
+            z-index: 1000;
         }
 
-        #speedbar button {
-            padding: 8px 12px;
-            background-color: #057219;
-            color: rgb(5, 0, 0);
-            border: solid;
-            border-radius: 4px;
-            cursor: pointer;
+        #btnContainer button {
+            width: 100%;
+            background-color: rgb(25, 115, 17);
         }
 
-        #speedbar button:hover {
-            background-color: #0056b3;
+        #btnContainer button:hover {
+            background-color: #f5f6a6;
         }
     </style>
 </head>
 <body>
     <h2>Snake Game</h2>
     <canvas id="game" width="500" height="500"></canvas>
-    <div id="speedbar">
+    <div id="btnContainer">
         <button id="restartBtn">Restart</button>
-        <button onclick="gameSpeed(100)">Slow</button>
-        <button onclick="gameSpeed(150)">Normal</button>
-        <button onclick="gameSpeed(200)">Fast</button>
+        <button id="slowBtn">Slow</button>
+        <button id="normalBtn">Normal</button>
+        <button id="fastBtn">Fast</button>
     </div>
     <script src="snake.js"></script>
 </body>

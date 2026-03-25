@@ -20,10 +20,16 @@ let food = {
     y: Math.floor(Math.random()* 20) * box
 };
 
-let gameInterval = setInterval(draw, 150);
+//im declaring the gamespeed at the beginning, im respecting order of declarations
+let gameSpeed = 230; 
+
+let gameInterval = setInterval(draw, gameSpeed);
 
 //im adding the score variable to display the score on the canvas
 let score = 0;
+
+//this is to refence the game speed each time a checkpoint is reached
+let checkPoint = 0;
 
 document.addEventListener("keydown", changeDirection);
 
@@ -58,8 +64,8 @@ function draw() {
 
     //this is to display the score on the canvas
     ctx.fillStyle = "Orange";
-    ctx.fillText("Food:" + score, 20, 20)
     ctx.font = "20px Broadway";
+    ctx.fillText("Food:" + score, 20, 20);
     
     //this gets the snake's head position
     let snakeX = snake[0].x;
@@ -73,7 +79,7 @@ function draw() {
 
     //this part of code checks if snake ate the food (If snake head is at the same position as the food)
     //the snake ate the food
-    if (snakeX === food.x && snakeY === food.y) {
+    if (snakeX === food.x && snakeY === food.y ) {
         //this increases the score when the snake eats the food
         score++;
 
@@ -92,8 +98,14 @@ function draw() {
         y: snakeY
     };
 
+    //this is to adjust the game speed/interval , every time the score hits a multiple of 5, you
+    if (score % 5 === 0 && gameSpeed > 70 && score !== checkPoint) {
+        adjustSpeed(gameSpeed - 5);
+        checkPoint = score;
+    }
+
     //this checks if the snake hits the wall, if it does - it's alerts game over then reloads the screen
-    if (snakeX < 0 || snakeX >= 500 || snakeY <0 | snakeY >= 500){
+    if (snakeX < 0 || snakeX >= 500 || snakeY <0 || snakeY >= 500){
         ctx.fillStyle = "white";
         ctx.font = "45px Algerian";
         //if all conditions are met, it will write game over on the canvas
@@ -106,20 +118,19 @@ function draw() {
     snake.unshift(newHead);
 }
 
-/*I'm trying to change speed of the game
-let gameSpeed = 150;
-function gameSpeed(newSpeed) {
+//This is a function to adjust the gamespeed during the game.
+function adjustSpeed(newSpeed) {
     clearInterval(gameInterval);
 
     gameSpeed = newSpeed;
     gameInterval = setInterval(draw, gameSpeed);
 
 }
-*/
-//this is the function to restart the game
 
+//this is the function for the restart button
 function restartGame() {
     clearInterval(gameInterval);
+    score = 0;
 
     snake = [{
     x:200,
@@ -133,7 +144,20 @@ function restartGame() {
     y: Math.floor(Math.random()* 20) * box
     };
 
-    gameInterval = setInterval(draw, 150);
+    gameInterval = setInterval(draw, gameSpeed);
 }
 
+//this is to make the buttons functional/using anonymous(button) functions so that it runs whenevr the button is clicked
 document.getElementById("restartBtn").addEventListener("click", restartGame);
+
+document.getElementById("slowBtn").addEventListener("click", () => {
+    adjustSpeed(200);
+});
+
+document.getElementById("normalBtn").addEventListener("click", () => {
+    adjustSpeed(150);
+});
+
+document.getElementById("fastBtn").addEventListener("click", () => {
+    adjustSpeed(100);
+});

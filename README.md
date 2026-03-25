@@ -1,4 +1,4 @@
-#  Snake Game
+��#  Snake Game
 
 A simple browser-based Snake game built with **HTML, CSS, and JavaScript**.  
 This project was created to practice **system design, programming fundamentals, and game logic** as the beginning of my software engineering journey.
@@ -6,7 +6,7 @@ This project was created to practice **system design, programming fundamentals, 
 ---
 
 ##  How to Play
-- Use the **arrow keys** (↑ ↓ ← →) to move the snake.
+- Use the **arrow keys** (↑ ↓ ← →to move the snake.
 - Eat the **food blocks** to grow longer.
 - Avoid hitting the **walls** or yourself — that ends the game. (Although the hitting yourself part doesn't work yet)
 
